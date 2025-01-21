@@ -6,6 +6,7 @@ import Courses from "./Courses";
 export default function Kambaz() {
     return (
         <div id="wd-kambaz">
+            <h1>Kambaz</h1>
             <table>
                 <tr>
                     <td valign="top">
@@ -13,7 +14,7 @@ export default function Kambaz() {
                     </td>
                     <td valign="top">
                         <Routes>
-                            <Route path="/" element={<Navigate to="/Kambaz/Account" />} />
+                            <Route path="/" element={<Navigate to="/Kambaz/Account/Signin" />} />
                             <Route path="/Account/*" element={<Account />} />
                             <Route path="/Dashboard" element={<Dashboard />} />
                             <Route path="/Courses/:cid/*" element={<Courses />} />
