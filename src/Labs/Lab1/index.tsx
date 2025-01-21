@@ -175,7 +175,8 @@ export default function Lab1() {
                     <input type="text" placeholder="Doe"
                         value="Wonderland"
                         title="The last name"
-                        id="wd-text-fields-last-name" />
+                        id="wd-text-fields-last-name" /><br />
+                    <h4>Other HTML field types</h4>
                     <label htmlFor="wd-text-fields-email"> Email: </label>
                     <input type="email"
                         placeholder="jdoe@somewhere.com"
@@ -205,9 +206,6 @@ export default function Lab1() {
             <textarea id="wd-textarea" cols={30} rows={10}>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse tincidunt, nunc eget lacinia tristique, nisl magna semper mi, et porta velit sem eget elit. Mauris mattis augue sed orci venenatis lacinia. Mauris eleifend turpis et bibendum tincidunt. Sed ullamcorper et leo eu auctor. Proin pharetra, est nec convallis faucibus, erat enim cursus urna, quis pharetra turpis nulla sit amet purus. Phasellus at magna varius, ultrices nibh in, pulvinar justo. Praesent dolor nisi, sagittis non auctor non, placerat vitae metus. In tincidunt eleifend orci, ac condimentum libero congue non. Suspendisse dapibus congue urna ut ultricies. Sed tortor dui, sagittis eget lobortis a, finibus a tellus. Suspendisse luctus purus a augue auctor iaculis sit amet id ex. In gravida sed odio vitae tincidunt. Cras nulla ante, vestibulum consequat nulla sed, dictum lacinia ex. Aliquam ac suscipit turpis. Ut scelerisque eleifend ante.
 
                 Vivamus in placerat urna. Vivamus lobortis fermentum elit sed rhoncus. Sed commodo metus eu varius commodo. Cras vulputate pulvinar ante eu imperdiet. Aliquam ex eros, dictum sit amet imperdiet ac, sagittis nec massa. Suspendisse non lacus quam. Maecenas a est a turpis convallis viverra non vel ex. Aenean ornare vehicula justo, quis ullamcorper nulla accumsan sed. Proin varius eros luctus urna gravida lacinia. Proin et mauris ex. Vestibulum varius ultrices velit et dignissim..</textarea>
-
-
-            <h4>Other HTML field types</h4>
 
             <h5 id="wd-buttons">Buttons</h5>
             <button type="button"
