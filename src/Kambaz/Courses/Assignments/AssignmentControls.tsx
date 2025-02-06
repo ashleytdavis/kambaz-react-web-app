@@ -1,7 +1,5 @@
-import React from 'react'
-import { Button, Col, Dropdown, Form, InputGroup, Row } from 'react-bootstrap';
+import { Button, Col, Form, InputGroup } from 'react-bootstrap';
 import { FaPlus } from 'react-icons/fa';
-import GreenCheckmark from './GreenCheckmark';
 
 const AssignmentControls = () => {
     return (

@@ -7,7 +7,7 @@ import { BsFillFileBarGraphFill } from "react-icons/bs";
 import { Button } from "react-bootstrap";
 import { BiSolidBell } from "react-icons/bi";
 import { BsMegaphone } from "react-icons/bs";
-{/* Find more icons */ }
+
 export default function CourseStatus() {
     return (
         <div id="wd-course-status" style={{ width: "350px" }}>

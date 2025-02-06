@@ -1,4 +1,3 @@
-import React from 'react'
 import { Button, Col, Form, FormControl, FormGroup, FormLabel, FormSelect, InputGroup, Row } from 'react-bootstrap'
 import FormRange from 'react-bootstrap/esm/FormRange'
 

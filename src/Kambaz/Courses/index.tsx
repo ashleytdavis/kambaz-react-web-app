@@ -4,7 +4,7 @@ import AssignmentEditor from "./Assignments/Editor";
 import Home from "./Home";
 import Modules from "./Modules";
 import CourseNavigation from "./Navigation";
-import { Navigate, Route, Routes } from "react-router";
+import { Route, Routes } from "react-router";
 import PeopleTable from "./People/Table";
 export default function Courses() {
     return (
