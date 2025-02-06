@@ -1,5 +1,3 @@
-import React from 'react'
-
 import { IoEllipsisVertical } from "react-icons/io5";
 import GreenCheckmark from "./GreenCheckmark";
 
