@@ -1,0 +1,57 @@
+[
+    { "_id": "A101", "title": "Propulsion Assignment", "course": "CS101", "date": "Feb 12", "dueDate": "Mar 12", "points": "100" },
+    { "_id": "A102", "title": "Network Topology Design", "course": "CS101", "date": "Feb 14", "dueDate": "Mar 14", "points": "120" },
+    { "_id": "A103", "title": "Intro to Algorithms", "course": "CS101", "date": "Feb 16", "dueDate": "Mar 16", "points": "110" },
+    { "_id": "A104", "title": "System Design Review", "course": "CS101", "date": "Feb 18", "dueDate": "Mar 18", "points": "130" },
+    { "_id": "A105", "title": "Software Testing Practice", "course": "CS101", "date": "Feb 20", "dueDate": "Mar 20", "points": "100" },
+    { "_id": "A106", "title": "Web Development Basics", "course": "CS101", "date": "Feb 22", "dueDate": "Mar 22", "points": "150" },
+    { "_id": "A107", "title": "Algorithmic Complexity Exercise", "course": "CS101", "date": "Feb 24", "dueDate": "Mar 24", "points": "90" },
+    
+    { "_id": "A201", "title": "Programming Fundamentals Quiz", "course": "CS102", "date": "Feb 12", "dueDate": "Feb 26", "points": "50" },
+    { "_id": "A202", "title": "Data Structures Implementation", "course": "CS102", "date": "Feb 14", "dueDate": "Mar 07", "points": "120" },
+    { "_id": "A203", "title": "Sorting Algorithms Analysis", "course": "CS102", "date": "Feb 16", "dueDate": "Mar 10", "points": "110" },
+    { "_id": "A204", "title": "Recursion Practice", "course": "CS102", "date": "Feb 18", "dueDate": "Mar 12", "points": "100" },
+    { "_id": "A205", "title": "Hashing Techniques", "course": "CS102", "date": "Feb 20", "dueDate": "Mar 14", "points": "130" },
+    { "_id": "A206", "title": "Binary Trees Assignment", "course": "CS102", "date": "Feb 22", "dueDate": "Mar 16", "points": "150" },
+    { "_id": "A207", "title": "Linked Lists Exploration", "course": "CS102", "date": "Feb 24", "dueDate": "Mar 18", "points": "140" },
+    
+    { "_id": "A301", "title": "Binary Search Algorithms", "course": "CS103", "date": "Feb 12", "dueDate": "Mar 05", "points": "100" },
+    { "_id": "A302", "title": "Classroom Design Project", "course": "CS103", "date": "Feb 14", "dueDate": "Mar 08", "points": "150" },
+    { "_id": "A303", "title": "Software Engineering Reflection", "course": "CS103", "date": "Feb 16", "dueDate": "Mar 10", "points": "120" },
+    { "_id": "A304", "title": "Object-Oriented Programming Exercise", "course": "CS103", "date": "Feb 18", "dueDate": "Mar 12", "points": "110" },
+    { "_id": "A305", "title": "Design Patterns Exploration", "course": "CS103", "date": "Feb 20", "dueDate": "Mar 14", "points": "140" },
+    { "_id": "A306", "title": "Data Structures Visualization", "course": "CS103", "date": "Feb 22", "dueDate": "Mar 16", "points": "130" },
+    { "_id": "A307", "title": "Recursion Deep Dive", "course": "CS103", "date": "Feb 24", "dueDate": "Mar 18", "points": "100" },
+    
+    { "_id": "A401", "title": "Object-Oriented Analysis Exam", "course": "CS104", "date": "Feb 12", "dueDate": "Feb 26", "points": "100" },
+    { "_id": "A402", "title": "Advanced Data Structures", "course": "CS104", "date": "Feb 14", "dueDate": "Mar 01", "points": "130" },
+    { "_id": "A403", "title": "Design Patterns Review", "course": "CS104", "date": "Feb 16", "dueDate": "Mar 03", "points": "120" },
+    { "_id": "A404", "title": "Software Architecture Design", "course": "CS104", "date": "Feb 18", "dueDate": "Mar 05", "points": "150" },
+    { "_id": "A405", "title": "Concurrent Programming Assignment", "course": "CS104", "date": "Feb 20", "dueDate": "Mar 07", "points": "140" },
+    
+    { "_id": "A501", "title": "SQL Database Design", "course": "CS105", "date": "Feb 12", "dueDate": "Feb 26", "points": "110" },
+    { "_id": "A502", "title": "Operating System Functions", "course": "CS105", "date": "Feb 14", "dueDate": "Mar 02", "points": "120" },
+    { "_id": "A503", "title": "Concurrency and Synchronization", "course": "CS105", "date": "Feb 16", "dueDate": "Mar 04", "points": "130" },
+    { "_id": "A504", "title": "Memory Management Simulation", "course": "CS105", "date": "Feb 18", "dueDate": "Mar 06", "points": "100" },
+    { "_id": "A505", "title": "Database Query Optimization", "course": "CS105", "date": "Feb 20", "dueDate": "Mar 08", "points": "140" },
+    { "_id": "A506", "title": "File System Management", "course": "CS105", "date": "Feb 22", "dueDate": "Mar 10", "points": "150" },
+    
+    { "_id": "A601", "title": "Machine Learning Review", "course": "CS106", "date": "Feb 12", "dueDate": "Feb 26", "points": "100" },
+    { "_id": "A602", "title": "Software Architecture Assignment", "course": "CS106", "date": "Feb 14", "dueDate": "Mar 02", "points": "130" },
+    { "_id": "A603", "title": "Data Mining Project", "course": "CS106", "date": "Feb 16", "dueDate": "Mar 04", "points": "150" },
+    { "_id": "A604", "title": "Neural Network Implementation", "course": "CS106", "date": "Feb 18", "dueDate": "Mar 06", "points": "140" },
+    { "_id": "A605", "title": "Artificial Intelligence in Practice", "course": "CS106", "date": "Feb 20", "dueDate": "Mar 08", "points": "120" },
+    
+    { "_id": "A701", "title": "JavaScript Fundamentals", "course": "CS107", "date": "Feb 12", "dueDate": "Feb 26", "points": "100" },
+    { "_id": "A702", "title": "Frontend Development Assignment", "course": "CS107", "date": "Feb 14", "dueDate": "Feb 28", "points": "120" },
+    { "_id": "A703", "title": "API Integration Challenge", "course": "CS107", "date": "Feb 16", "dueDate": "Mar 02", "points": "110" },
+    { "_id": "A704", "title": "ReactJS Exercise", "course": "CS107", "date": "Feb 18", "dueDate": "Mar 04", "points": "130" },
+    { "_id": "A705", "title": "VueJS Application Development", "course": "CS107", "date": "Feb 20", "dueDate": "Mar 06", "points": "140" },
+    
+    { "_id": "A801", "title": "Linux Systems Configuration", "course": "CS108", "date": "Feb 12", "dueDate": "Feb 26", "points": "120" },
+    { "_id": "A802", "title": "Cloud Computing Concepts", "course": "CS108", "date": "Feb 14", "dueDate": "Mar 01", "points": "130" },
+    { "_id": "A803", "title": "Big Data Architecture", "course": "CS108", "date": "Feb 16", "dueDate": "Mar 03", "points": "100" },
+    { "_id": "A804", "title": "Containers and Virtualization", "course": "CS108", "date": "Feb 18", "dueDate": "Mar 05", "points": "110" },
+    { "_id": "A805", "title": "Networking Protocols Review", "course": "CS108", "date": "Feb 20", "dueDate": "Mar 07", "points": "120" },
+    { "_id": "A806", "title": "Distributed Systems Project", "course": "CS108", "date": "Feb 22", "dueDate": "Mar 09", "points": "150" }
+  ]  
