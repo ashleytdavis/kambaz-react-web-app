@@ -1,19 +1,34 @@
 import { Form, Button, Container, Row, Col, Card } from "react-bootstrap";
+import { Link, useParams } from "react-router";
+import * as db from "../../Database";
+
 
 export default function AssignmentEditor() {
+    const { cid, aid } = useParams();
+    const assignments = db.assignments;
+
+    const formatDate = (dateString: string | undefined) => {
+        if (!dateString)
+            return "";
+        const date = new Date(dateString);
+        return date.toISOString().slice(0, 16);
+    };
+
+    const assignment = assignments.find((assignment: any) => assignment._id === aid && assignment.course === cid);
+
     return (
         <Container className="mt-4">
             <Form>
                 <Form.Group className="mb-4">
                     <Form.Label>Assignment Name</Form.Label>
-                    <Form.Control type="text" value="A1" />
+                    <Form.Control type="text" value={assignment?.title} />
                 </Form.Group>
 
                 <Form.Group className="mb-4">
                     <Form.Control
                         as="textarea"
                         rows={6}
-                        value="The assignment is available online Submit a link to the landing page of your Web application running on Netlify. The landing page should include the following: Your full name and section Links to each of the lab assignments Link to the Kambaz application Links to all relevant source code repositories The Kambaz application should include a link to navigate back to the landing page."
+                        value={assignment?.description}
                     />
                 </Form.Group>
 
@@ -22,7 +37,7 @@ export default function AssignmentEditor() {
                         <Form.Label className="text-end d-block">Points</Form.Label>
                     </Col>
                     <Col md={9}>
-                        <Form.Control type="number" value={100} />
+                        <Form.Control type="number" value={assignment?.points} />
                     </Col>
                 </Row>
 
@@ -85,18 +100,29 @@ export default function AssignmentEditor() {
                                 <Form.Control type="text" value="Everyone" className="mb-3" />
 
                                 <Form.Label>Due</Form.Label>
-                                <Form.Control type="datetime-local" className="mb-3" />
+                                <Form.Control
+                                    defaultValue={formatDate(assignment?.dueDateAlt)}
+                                    type="datetime-local"
+                                    className="mb-3"
+                                />
 
                                 <Row>
                                     <Col>
                                         <Form.Label>Available from</Form.Label>
-                                        <Form.Control type="datetime-local" />
+                                        <Form.Control
+                                            defaultValue={formatDate(assignment?.dateAlt)}
+                                            type="datetime-local"
+                                        />
                                     </Col>
                                     <Col>
                                         <Form.Label>Until</Form.Label>
-                                        <Form.Control type="datetime-local" />
+                                        <Form.Control
+                                            defaultValue={formatDate(assignment?.dueDateAlt)}
+                                            type="datetime-local"
+                                        />
                                     </Col>
                                 </Row>
+
                             </Card.Body>
                         </Card>
                     </Col>
@@ -105,8 +131,12 @@ export default function AssignmentEditor() {
                 <hr />
 
                 <div className="d-flex justify-content-end gap-2">
-                    <Button variant="light">Cancel</Button>
-                    <Button variant="danger">Save</Button>
+                    <Link to={`/Kambaz/Courses/${cid}/Assignments`}>
+                        <Button variant="light">Cancel</Button>
+                    </Link>
+                    <Link to={`/Kambaz/Courses/${cid}/Assignments`}>
+                        <Button variant="danger">Save</Button>
+                    </Link>
                 </div>
             </Form>
         </Container>

@@ -52,7 +52,6 @@ export default function Assignments() {
                     <ListGroup className="rounded-0">
                         {assignments
                             .filter((assignment: any) => assignment.course === cid)
-
                             .map((assignment: any) => (
                                 <ListGroup.Item
                                     key={assignment._id}
@@ -62,7 +61,7 @@ export default function Assignments() {
                                         <BsGripVertical className="me-2 text-secondary" />
                                         <FaRegListAlt className="me-2 text-success" />
                                         <div className="flex-grow-1">
-                                            <a href="#/Kambaz/Courses/1234/Assignments/123"
+                                            <a href={`#/Kambaz/Courses/${cid}/Assignments/${assignment._id}`}
                                                 className="wd-assignment-link fw-bold text-decoration-none text-dark" >
                                                 {assignment._id} - {assignment.title}
                                             </a>
