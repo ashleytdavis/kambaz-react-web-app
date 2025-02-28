@@ -1,3 +1,4 @@
+import { useSelector } from "react-redux";
 import Add from "./Add.tsx";
 import AddingAndRemovingToFromArrays from "./AddingAndRemovingToFromArrays";
 import AddPathParameters from "./AddPathParameters.tsx";
@@ -29,13 +30,22 @@ import TernaryOperator from "./TernaryOperator";
 import TodoList from "./todos/TodoList";
 import VariablesAndConstants from "./VariablesAndConstants";
 import VariableTypes from "./VariableTypes";
+import { ListGroup } from "react-bootstrap";
 
 export default function Lab3() {
     console.log('Hello World!');
-
+    const { todos } = useSelector((state: any) => state.todosReducer);
     return (
         <div id="wd-lab3">
             <h3>Lab 3</h3>
+            <ListGroup>
+                {todos.map((todo: any) => (
+                    <ListGroup.Item key={todo.id}>
+                        {todo.title}
+                    </ListGroup.Item>
+                ))}
+            </ListGroup>
+            <hr />
             <VariablesAndConstants />
             <VariableTypes />
             <BooleanVariables />
