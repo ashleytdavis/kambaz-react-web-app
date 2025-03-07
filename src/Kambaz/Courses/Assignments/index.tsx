@@ -5,6 +5,7 @@ import AssignmentControlButtonGroup from "./AssignmentControlButtonGroup";
 import { IoEllipsisVertical } from "react-icons/io5";
 import { useParams } from "react-router";
 import * as db from "../../Database";
+import FacultyContent from "../../FacultyContent";
 
 export default function Assignments() {
     const { cid } = useParams();
@@ -20,16 +21,18 @@ export default function Assignments() {
                         className="form-control ps-5"
                     />
                 </div>
-                <div>
-                    <button className="btn btn-light me-2">
-                        <BsPlusLg className="me-1" />
-                        Group
-                    </button>
-                    <button className="btn btn-danger">
-                        <BsPlusLg className="me-1" />
-                        Assignment
-                    </button>
-                </div>
+                <FacultyContent>
+                    <div>
+                        <button className="btn btn-light me-2">
+                            <BsPlusLg className="me-1" />
+                            Group
+                        </button>
+                        <button className="btn btn-danger">
+                            <BsPlusLg className="me-1" />
+                            Assignment
+                        </button>
+                    </div>
+                </FacultyContent>
             </div>
 
             <ListGroup className="rounded-0">
