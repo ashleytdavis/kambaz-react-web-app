@@ -1,15 +1,16 @@
-import { ListGroup } from "react-bootstrap";
+import { ListGroup, Button } from "react-bootstrap";
 import { BsGripVertical, BsCaretDownFill, BsSearch, BsPlusLg } from "react-icons/bs";
 import { FaRegListAlt } from "react-icons/fa";
 import AssignmentControlButtonGroup from "./AssignmentControlButtonGroup";
 import { IoEllipsisVertical } from "react-icons/io5";
 import { useParams } from "react-router";
-import * as db from "../../Database";
 import FacultyContent from "../../FacultyContent";
+import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 export default function Assignments() {
     const { cid } = useParams();
-    const assignments = db.assignments;
+    const assignments = useSelector((state: any) => state.assignmentsReducer.assignments);
     return (
         <div>
             <div className="d-flex justify-content-between align-items-center mb-4">
@@ -27,10 +28,12 @@ export default function Assignments() {
                             <BsPlusLg className="me-1" />
                             Group
                         </button>
-                        <button className="btn btn-danger">
-                            <BsPlusLg className="me-1" />
-                            Assignment
-                        </button>
+                        <Link to={`/Kambaz/Courses/${cid}/Assignments/Builder`}>
+                            <Button variant="danger">
+                                <BsPlusLg className="me-1" />
+                                Assignment
+                            </Button>
+                        </Link>
                     </div>
                 </FacultyContent>
             </div>
@@ -66,7 +69,7 @@ export default function Assignments() {
                                         <div className="flex-grow-1">
                                             <a href={`#/Kambaz/Courses/${cid}/Assignments/${assignment._id}`}
                                                 className="wd-assignment-link fw-bold text-decoration-none text-dark" >
-                                                {assignment._id} - {assignment.title}
+                                                {assignment.title}
                                             </a>
                                             <br />
                                             <small>

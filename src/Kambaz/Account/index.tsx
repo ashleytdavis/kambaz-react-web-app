@@ -8,7 +8,6 @@ export default function Account() {
     const { currentUser } = useSelector((state: any) => state.accountReducer);
     return (
         <div id="wd-account-screen">
-            <h2>Account</h2>
             <table>
                 <tr>
                     <td valign="top">
