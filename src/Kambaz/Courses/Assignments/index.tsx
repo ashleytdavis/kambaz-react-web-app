@@ -79,7 +79,7 @@ export default function Assignments() {
                                                 <span className="text-secondary">Due {assignment.dueDate} at 11:59pm | {assignment.points} pts</span>
                                             </small>
                                         </div>
-                                        <AssignmentControlButtonGroup />
+                                        <AssignmentControlButtonGroup assignmentID={assignment._id} />
                                     </div>
                                 </ListGroup.Item>
                             ))}

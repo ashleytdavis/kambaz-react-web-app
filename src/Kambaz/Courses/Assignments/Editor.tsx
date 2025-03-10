@@ -1,11 +1,15 @@
 import { Form, Button, Container, Row, Col, Card } from "react-bootstrap";
 import { Link, useParams } from "react-router";
 import * as db from "../../Database";
+import { updateAssignment } from "./reducer";
+import { useDispatch } from "react-redux";
+import { useState } from "react";
 
 
 export default function AssignmentEditor() {
     const { cid, aid } = useParams();
     const assignments = db.assignments;
+    const dispatch = useDispatch();
 
     const formatDate = (dateString: string | undefined) => {
         if (!dateString)
@@ -14,22 +18,43 @@ export default function AssignmentEditor() {
         return date.toISOString().slice(0, 16);
     };
 
+    const unformatDate = (dateString: string) => {
+        const date = new Date(dateString);
+        const options = { month: "short", day: "2-digit" } as const;
+        return date.toLocaleDateString("en-US", options);
+    };
+
     const assignment = assignments.find((assignment: any) => assignment._id === aid && assignment.course === cid);
+
+    const [newAssignment, setNewAssignment] = useState(
+        {
+            _id: aid,
+            title: assignment?.title,
+            course: cid,
+            date: assignment?.date,
+            dueDate: assignment?.dueDate,
+            points: assignment?.points,
+            dateAlt: assignment?.dateAlt,
+            dueDateAlt: assignment?.dueDateAlt,
+            description: assignment?.description,
+        }
+    );
 
     return (
         <Container className="mt-4">
             <Form>
                 <Form.Group className="mb-4">
                     <Form.Label>Assignment Name</Form.Label>
-                    <Form.Control type="text" value={assignment?.title} />
+                    <Form.Control type="text" value={newAssignment?.title}
+                        onChange={(e) => setNewAssignment({ ...newAssignment, title: e.target.value })} />
                 </Form.Group>
 
                 <Form.Group className="mb-4">
                     <Form.Control
                         as="textarea"
                         rows={6}
-                        value={assignment?.description}
-                    />
+                        value={newAssignment?.description}
+                        onChange={(e) => setNewAssignment({ ...newAssignment, description: e.target.value })} />
                 </Form.Group>
 
                 <Row className="mb-3">
@@ -37,7 +62,8 @@ export default function AssignmentEditor() {
                         <Form.Label className="text-end d-block">Points</Form.Label>
                     </Col>
                     <Col md={9}>
-                        <Form.Control type="number" value={assignment?.points} />
+                        <Form.Control type="number" value={newAssignment?.points}
+                            onChange={(e) => setNewAssignment({ ...newAssignment, points: e.target.value })} />
                     </Col>
                 </Row>
 
@@ -101,25 +127,33 @@ export default function AssignmentEditor() {
 
                                 <Form.Label>Due</Form.Label>
                                 <Form.Control
-                                    defaultValue={formatDate(assignment?.dueDateAlt)}
+                                    defaultValue={formatDate(newAssignment?.dueDateAlt)}
                                     type="datetime-local"
                                     className="mb-3"
-                                />
-
+                                    onChange={(e) => {
+                                        setNewAssignment({ ...newAssignment, dueDateAlt: e.target.value });
+                                        setNewAssignment({ ...newAssignment, dueDate: unformatDate(e.target.value) });
+                                    }} />
                                 <Row>
                                     <Col>
                                         <Form.Label>Available from</Form.Label>
                                         <Form.Control
-                                            defaultValue={formatDate(assignment?.dateAlt)}
+                                            defaultValue={formatDate(newAssignment?.dateAlt)}
                                             type="datetime-local"
-                                        />
+                                            onChange={(e) => {
+                                                setNewAssignment({ ...newAssignment, dateAlt: e.target.value });
+                                                setNewAssignment({ ...newAssignment, date: unformatDate(e.target.value) });
+                                            }} />
                                     </Col>
                                     <Col>
                                         <Form.Label>Until</Form.Label>
                                         <Form.Control
-                                            defaultValue={formatDate(assignment?.dueDateAlt)}
+                                            defaultValue={formatDate(newAssignment?.dueDateAlt)}
                                             type="datetime-local"
-                                        />
+                                            onChange={(e) => {
+                                                setNewAssignment({ ...newAssignment, dueDateAlt: e.target.value });
+                                                setNewAssignment({ ...newAssignment, dueDate: unformatDate(e.target.value) });
+                                            }} />
                                     </Col>
                                 </Row>
 
@@ -135,7 +169,7 @@ export default function AssignmentEditor() {
                         <Button variant="light">Cancel</Button>
                     </Link>
                     <Link to={`/Kambaz/Courses/${cid}/Assignments`}>
-                        <Button variant="danger">Save</Button>
+                        <Button variant="danger" onClick={() => { dispatch(updateAssignment(newAssignment)) }}>Save</Button>
                     </Link>
                 </div>
             </Form>
