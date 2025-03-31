@@ -14,8 +14,8 @@ export default function EnrolledContent({ children }: { children: any }) {
   );
 
   return (
-    <StudentContent>
+    <>
       {isEnrolled ? children : <Navigate to="/Kambaz/Dashboard" />}
-    </StudentContent>
+    </>
   );
 }
