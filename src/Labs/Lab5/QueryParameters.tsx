@@ -16,25 +16,26 @@ const QueryParameters = () => {
                 className="mb-2"
                 defaultValue={b} type="number"
                 onChange={(e) => setB(e.target.value)} />
-            <a id="wd-query-parameter-add"
-                href={`${REMOTE_SERVER}/lab5/calculator?operation=add&a=${a}&b=${b}`}>
-                Add {a} + {b}
-            </a>
-            <a id="wd-query-parameter-subtract"
-                href={`${REMOTE_SERVER}/lab5/calculator?operation=subtract&a=${a}&b=${b}`}>
-                Substract {a} - {b}
-            </a>
-            <a id="wd-query-parameter-multiply"
-                href={`${REMOTE_SERVER}/lab5/calculator?operation=multiply&a=${a}&b=${b}`}>
-                Multiply {a} * {b}
-            </a>
-            <a id="wd-query-parameter-division"
-                href={`${REMOTE_SERVER}/lab5/calculator?operation=divide&a=${a}&b=${b}`}>
-                Divide {a} / {b}
-            </a>
+            <div className='d-flex flex-column'>
+                <a id="wd-query-parameter-add"
+                    href={`${REMOTE_SERVER}/lab5/calculator?operation=add&a=${a}&b=${b}`}>
+                    Add {a} + {b}
+                </a>
+                <a id="wd-query-parameter-subtract"
+                    href={`${REMOTE_SERVER}/lab5/calculator?operation=subtract&a=${a}&b=${b}`}>
+                    Substract {a} - {b}
+                </a>
+                <a id="wd-query-parameter-multiply"
+                    href={`${REMOTE_SERVER}/lab5/calculator?operation=multiply&a=${a}&b=${b}`}>
+                    Multiply {a} * {b}
+                </a>
+                <a id="wd-query-parameter-division"
+                    href={`${REMOTE_SERVER}/lab5/calculator?operation=divide&a=${a}&b=${b}`}>
+                    Divide {a} / {b}
+                </a>
+            </div>
             <hr />
-        </div>
-
+        </div >
     )
 }
 
