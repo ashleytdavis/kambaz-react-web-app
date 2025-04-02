@@ -4,6 +4,7 @@ import * as db from "../../Database";
 import { updateAssignment } from "./reducer";
 import { useDispatch } from "react-redux";
 import { useState } from "react";
+import * as assignmentClient from "./client"
 
 
 export default function AssignmentEditor() {
@@ -22,6 +23,11 @@ export default function AssignmentEditor() {
         const date = new Date(dateString);
         const options = { month: "short", day: "2-digit" } as const;
         return date.toLocaleDateString("en-US", options);
+    };
+
+    const handleUpdate = async () => {
+        await assignmentClient.updateAssignment(newAssignment);
+        dispatch(updateAssignment(newAssignment));
     };
 
     const assignment = assignments.find((assignment: any) => assignment._id === aid && assignment.course === cid);
@@ -169,7 +175,7 @@ export default function AssignmentEditor() {
                         <Button variant="light">Cancel</Button>
                     </Link>
                     <Link to={`/Kambaz/Courses/${cid}/Assignments`}>
-                        <Button variant="danger" onClick={() => { dispatch(updateAssignment(newAssignment)) }}>Save</Button>
+                        <Button variant="danger" onClick={handleUpdate}>Save</Button>
                     </Link>
                 </div>
             </Form>

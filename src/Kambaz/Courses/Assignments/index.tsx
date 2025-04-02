@@ -6,11 +6,22 @@ import { IoEllipsisVertical } from "react-icons/io5";
 import { useParams } from "react-router";
 import FacultyContent from "../../FacultyContent";
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import * as coursesClient from "../client";
+import { setAssignments } from "./reducer";
+import { useEffect } from "react";
 
 export default function Assignments() {
     const { cid } = useParams();
-    const assignments = useSelector((state: any) => state.assignmentsReducer.assignments);
+    const dispatch = useDispatch();
+    const fetchAssignments = async () => {
+        const assignments = await coursesClient.findAssignmentsForCourse(cid as string);
+        dispatch(setAssignments(assignments));
+    };
+    useEffect(() => {
+        fetchAssignments();
+    }, []);
+    const { assignments } = useSelector((state: any) => state.assignmentsReducer);
     return (
         <div>
             <div className="d-flex justify-content-between align-items-center mb-4">

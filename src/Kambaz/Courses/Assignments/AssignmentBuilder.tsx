@@ -3,6 +3,7 @@ import { Link, useParams } from "react-router";
 import { useDispatch } from "react-redux";
 import { useState } from "react";
 import { addAssignment } from "../Assignments/reducer";
+import * as assignmentClient from "./client"
 
 
 export default function AssignmentBuilder() {
@@ -20,6 +21,11 @@ export default function AssignmentBuilder() {
         const date = new Date(dateString);
         const options = { month: "short", day: "2-digit" } as const;
         return date.toLocaleDateString("en-US", options);
+    };
+
+    const handleCreateAssignment = async () => {
+        const createdAssignment = await assignmentClient.createAssignmentForCourse({ ...assignment, course: cid });
+        dispatch(addAssignment(assignment))
     };
 
     const [assignment, setAssignment] = useState(
@@ -169,7 +175,7 @@ export default function AssignmentBuilder() {
                         <Button variant="light">Cancel</Button>
                     </Link>
                     <Link to={`/Kambaz/Courses/${cid}/Assignments`}>
-                        <Button variant="danger" onClick={() => dispatch(addAssignment(assignment))}>Save</Button>
+                        <Button variant="danger" onClick={handleCreateAssignment}>Save</Button>
                     </Link>
                 </div>
             </Form>
