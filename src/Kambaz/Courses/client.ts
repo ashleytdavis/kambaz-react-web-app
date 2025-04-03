@@ -2,6 +2,7 @@ import axios from "axios";
 const REMOTE_SERVER = import.meta.env.VITE_REMOTE_SERVER;
 const COURSES_API = `${REMOTE_SERVER}/api/courses`;
 const ASSIGNMENTS_API = `${REMOTE_SERVER}/api/assignments`;
+const ENROLLMENT_API = `${REMOTE_SERVER}/api/enrollment`;
 export const fetchAllCourses = async () => {
   const { data } = await axios.get(COURSES_API);
   return data;
@@ -28,6 +29,12 @@ export const createModuleForCourse = async (courseId: string, module: any) => {
 export const findAssignmentsForCourse = async (courseId: string) => {
   const response = await axios.get(ASSIGNMENTS_API, {
     params: { courseId },
+  });
+  return response.data;
+};
+export const handleEnroll = async (userId: string, courseId: string) => {
+  const response = await axios.post(`${ENROLLMENT_API}/enroll`, {
+    params: { userId, courseId },
   });
   return response.data;
 };

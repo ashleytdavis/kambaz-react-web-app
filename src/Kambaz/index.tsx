@@ -12,7 +12,6 @@ import { useEffect, useState } from 'react';
 import * as userClient from "./Account/client";
 import * as courseClient from "./Courses/client";
 export default function Kambaz() {
-
     const [courses, setCourses] = useState<any[]>([]);
     const { currentUser } = useSelector((state: any) => state.accountReducer);
     const fetchCourses = async () => {
@@ -27,6 +26,15 @@ export default function Kambaz() {
         fetchCourses();
         console.log(courses);
     }, [currentUser]);
+
+    const fetchAllCourses = async () => {
+        try {
+            const courses = await courseClient.fetchAllCourses();
+            setCourses(courses);
+        } catch (error) {
+            console.error(error);
+        }
+    }
 
     const deleteCourse = async (courseId: string) => {
         const status = await courseClient.deleteCourse(courseId);
@@ -62,7 +70,9 @@ export default function Kambaz() {
                                     courses={courses}
                                     addNewCourse={addNewCourse}
                                     deleteCourse={deleteCourse}
-                                    updateCourse={updateCourse} />
+                                    updateCourse={updateCourse}
+                                    setCourses={fetchAllCourses}
+                                    fetchCourses={fetchCourses} />
                             </ProtectedRoute>
                         } />
                         <Route path="/Courses/:cid/*" element={

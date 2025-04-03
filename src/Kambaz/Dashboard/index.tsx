@@ -3,13 +3,14 @@ import { Button, Card, Col, Row, FormControl } from "react-bootstrap";
 import { useSelector, useDispatch } from "react-redux";
 import FacultyContent from "../FacultyContent";
 import { useState } from "react";
-import { enrollCourse, unenrollCourse } from "../Courses/reducer";
+import { enrollCourse } from "../Courses/reducer";
 import StudentContent from "../StudentContent";
+import * as courseClient from "../Courses/client"
 
 export default function Dashboard(
-    { courses, addNewCourse, deleteCourse, updateCourse }: {
+    { courses, addNewCourse, deleteCourse, updateCourse, setCourses, fetchCourses }: {
         courses: any[]; addNewCourse: (course: any) => void; deleteCourse: (courseId: string) => void;
-        updateCourse: (course: any) => void;
+        updateCourse: (course: any) => void; setCourses: () => void; fetchCourses: () => void;
     }) {
     const { currentUser } = useSelector((state: any) => state.accountReducer);
     const dispatch = useDispatch();
@@ -27,12 +28,19 @@ export default function Dashboard(
     };
 
     const handleEnroll = (courseId: string) => {
+        courseClient.handleEnroll(currentUser._id, courseId)
         dispatch(enrollCourse({ userId: currentUser._id, courseId }));
     };
 
-    const handleUnenroll = (courseId: string) => {
-        dispatch(unenrollCourse({ userId: currentUser._id, courseId }));
-    };
+    const handleShowCourses = () => {
+        setShowAllCourses(!showAllCourses)
+        if (showAllCourses) {
+            fetchCourses();
+        } else {
+            setCourses();
+        }
+
+    }
 
     return (
         <div id="wd-dashboard">
@@ -58,7 +66,7 @@ export default function Dashboard(
                 <Button
                     className="float-end mb-3"
                     variant="primary"
-                    onClick={() => setShowAllCourses(!showAllCourses)}
+                    onClick={handleShowCourses}
                 >
                     {showAllCourses ? "Show Enrolled Courses" : "Show All Courses"}
                 </Button>
@@ -103,20 +111,14 @@ export default function Dashboard(
                                                         ? (
                                                             <Button
                                                                 variant="danger"
-                                                                onClick={(event) => {
-                                                                    event.preventDefault();
-                                                                    handleUnenroll(course._id);
-                                                                }}
+                                                                onClick={handleEnroll(course._id)}
                                                             >
                                                                 Unenroll
                                                             </Button>
                                                         ) : (
                                                             <Button
                                                                 variant="success"
-                                                                onClick={(event) => {
-                                                                    event.preventDefault();
-                                                                    handleEnroll(course._id);
-                                                                }}
+                                                                onClick={handleEnroll(course._id)}
                                                             >
                                                                 Enroll
                                                             </Button>
@@ -131,6 +133,6 @@ export default function Dashboard(
                     ))}
                 </Row>
             </div>
-        </div>
+        </div >
     );
 }
