@@ -25,7 +25,7 @@ export default function AssignmentBuilder() {
 
     const handleCreateAssignment = async () => {
         const createdAssignment = await assignmentClient.createAssignmentForCourse({ ...assignment, course: cid });
-        dispatch(addAssignment(assignment))
+        dispatch(addAssignment(createdAssignment))
     };
 
     const [assignment, setAssignment] = useState(

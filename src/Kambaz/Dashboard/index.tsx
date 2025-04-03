@@ -1,11 +1,12 @@
 import { Link } from "react-router-dom";
 import { Button, Card, Col, Row, FormControl } from "react-bootstrap";
-import { useSelector, useDispatch } from "react-redux";
+// import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import FacultyContent from "../FacultyContent";
 import { useState } from "react";
-import { enrollCourse } from "../Courses/reducer";
+// import { enrollCourse } from "../Courses/reducer";
 import StudentContent from "../StudentContent";
-import * as courseClient from "../Courses/client"
+// import * as courseClient from "../Courses/client"
 
 export default function Dashboard(
     { courses, addNewCourse, deleteCourse, updateCourse, setCourses, fetchCourses }: {
@@ -13,7 +14,7 @@ export default function Dashboard(
         updateCourse: (course: any) => void; setCourses: () => void; fetchCourses: () => void;
     }) {
     const { currentUser } = useSelector((state: any) => state.accountReducer);
-    const dispatch = useDispatch();
+    // const dispatch = useDispatch();
     const [course, setCourse] = useState<any>({});
     const [showAllCourses, setShowAllCourses] = useState(false);
 
@@ -27,10 +28,10 @@ export default function Dashboard(
         setCourse({});
     };
 
-    const handleEnroll = (courseId: string) => {
-        courseClient.handleEnroll(currentUser._id, courseId)
-        dispatch(enrollCourse({ userId: currentUser._id, courseId }));
-    };
+    // const handleEnroll = (courseId: string) => {
+    //     courseClient.handleEnroll(currentUser._id, courseId)
+    //     dispatch(enrollCourse({ userId: currentUser._id, courseId }));
+    // };
 
     const handleShowCourses = () => {
         setShowAllCourses(!showAllCourses)
@@ -111,14 +112,14 @@ export default function Dashboard(
                                                         ? (
                                                             <Button
                                                                 variant="danger"
-                                                                onClick={handleEnroll(course._id)}
+                                                            // onClick={handleEnroll(course._id)}
                                                             >
                                                                 Unenroll
                                                             </Button>
                                                         ) : (
                                                             <Button
                                                                 variant="success"
-                                                                onClick={handleEnroll(course._id)}
+                                                            // onClick={handleEnroll(course._id)}
                                                             >
                                                                 Enroll
                                                             </Button>
