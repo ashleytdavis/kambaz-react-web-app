@@ -106,11 +106,19 @@ export default function Kambaz() {
                         } />
                         <Route path="/Courses/:cid/*" element={
                             <ProtectedRoute>
-                                {/* <EnrolledContent> */}
                                 <Courses courses={courses} />
-                                {/* </EnrolledContent> */}
                             </ProtectedRoute>
                         } />
+                        <Route path='/Courses' element={<ProtectedRoute>
+                            <Dashboard
+                                courses={courses}
+                                addNewCourse={addNewCourse}
+                                deleteCourse={deleteCourse}
+                                updateCourse={updateCourse}
+                                enrolling={enrolling}
+                                setEnrolling={setEnrolling}
+                                updateEnrollment={updateEnrollment} />
+                        </ProtectedRoute>} />
                         <Route path="/Calendar" element={<h1>Calendar</h1>} />
                         <Route path="/Inbox" element={<h1>Inbox</h1>} />
                     </Routes>
