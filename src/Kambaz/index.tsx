@@ -6,7 +6,6 @@ import KambazNavigation from "./Navigation";
 import Courses from "./Courses";
 import ProtectedRoute from './Account/ProtectedRoute';
 import { useSelector } from "react-redux";
-import EnrolledContent from './EnrolledContent';
 import Session from "./Account/Session";
 import { useEffect, useState } from 'react';
 import * as courseClient from "./Courses/client";
@@ -49,17 +48,8 @@ export default function Kambaz() {
         }
     }, [currentUser, enrolling]);
 
-    const fetchAllCourses = async () => {
-        try {
-            const courses = await courseClient.fetchAllCourses();
-            setCourses(courses);
-        } catch (error) {
-            console.error(error);
-        }
-    }
-
     const deleteCourse = async (courseId: string) => {
-        const status = await courseClient.deleteCourse(courseId);
+        await courseClient.deleteCourse(courseId);
         setCourses(courses.filter((course) => course._id !== courseId));
     };
 
@@ -109,8 +99,6 @@ export default function Kambaz() {
                                     addNewCourse={addNewCourse}
                                     deleteCourse={deleteCourse}
                                     updateCourse={updateCourse}
-                                    setCourses={fetchAllCourses}
-                                    fetchCourses={fetchCourses}
                                     enrolling={enrolling}
                                     setEnrolling={setEnrolling}
                                     updateEnrollment={updateEnrollment} />
@@ -119,7 +107,7 @@ export default function Kambaz() {
                         <Route path="/Courses/:cid/*" element={
                             <ProtectedRoute>
                                 {/* <EnrolledContent> */}
-                                    <Courses courses={courses} />
+                                <Courses courses={courses} />
                                 {/* </EnrolledContent> */}
                             </ProtectedRoute>
                         } />

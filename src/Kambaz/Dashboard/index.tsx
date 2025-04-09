@@ -1,21 +1,15 @@
 import { Link } from "react-router-dom";
 import { Button, Card, Col, Row, FormControl } from "react-bootstrap";
-// import { useSelector, useDispatch } from "react-redux";
-import { useSelector } from "react-redux";
 import FacultyContent from "../FacultyContent";
 import { useState } from "react";
-// import { enrollCourse } from "../Courses/reducer";
 import StudentContent from "../StudentContent";
-// import * as courseClient from "../Courses/client"
 
 export default function Dashboard(
-    { courses, addNewCourse, deleteCourse, updateCourse, setCourses, fetchCourses, enrolling, setEnrolling, updateEnrollment }: {
+    { courses, addNewCourse, deleteCourse, updateCourse, enrolling, setEnrolling, updateEnrollment }: {
         courses: any[]; addNewCourse: (course: any) => void; deleteCourse: (courseId: string) => void;
-        updateCourse: (course: any) => void; setCourses: () => void; fetchCourses: () => void; enrolling: boolean; setEnrolling: (enrolling: boolean) => void;
+        updateCourse: (course: any) => void; enrolling: boolean; setEnrolling: (enrolling: boolean) => void;
         updateEnrollment: (courseId: string, enrolled: boolean) => void;
     }) {
-    const { currentUser } = useSelector((state: any) => state.accountReducer);
-    // const dispatch = useDispatch();
     const [course, setCourse] = useState<any>({});
 
     const handleAddCourse = () => {
