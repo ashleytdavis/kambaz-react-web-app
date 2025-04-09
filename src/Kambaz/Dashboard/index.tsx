@@ -9,14 +9,14 @@ import StudentContent from "../StudentContent";
 // import * as courseClient from "../Courses/client"
 
 export default function Dashboard(
-    { courses, addNewCourse, deleteCourse, updateCourse, setCourses, fetchCourses }: {
+    { courses, addNewCourse, deleteCourse, updateCourse, setCourses, fetchCourses, enrolling, setEnrolling, updateEnrollment }: {
         courses: any[]; addNewCourse: (course: any) => void; deleteCourse: (courseId: string) => void;
-        updateCourse: (course: any) => void; setCourses: () => void; fetchCourses: () => void;
+        updateCourse: (course: any) => void; setCourses: () => void; fetchCourses: () => void; enrolling: boolean; setEnrolling: (enrolling: boolean) => void;
+        updateEnrollment: (courseId: string, enrolled: boolean) => void;
     }) {
     const { currentUser } = useSelector((state: any) => state.accountReducer);
     // const dispatch = useDispatch();
     const [course, setCourse] = useState<any>({});
-    const [showAllCourses, setShowAllCourses] = useState(false);
 
     const handleAddCourse = () => {
         addNewCourse(course);
@@ -28,24 +28,13 @@ export default function Dashboard(
         setCourse({});
     };
 
-    // const handleEnroll = (courseId: string) => {
-    //     courseClient.handleEnroll(currentUser._id, courseId)
-    //     dispatch(enrollCourse({ userId: currentUser._id, courseId }));
-    // };
-
-    const handleShowCourses = () => {
-        setShowAllCourses(!showAllCourses)
-        if (showAllCourses) {
-            fetchCourses();
-        } else {
-            setCourses();
-        }
-
-    }
-
     return (
         <div id="wd-dashboard">
-            <h1 id="wd-dashboard-title">Dashboard</h1> <hr />
+            <h1 id="wd-dashboard-title">Dashboard
+                <button onClick={() => setEnrolling(!enrolling)} className="float-end btn btn-primary" >
+                    {enrolling ? "My Courses" : "All Courses"}
+                </button>
+            </h1> <hr />
             <FacultyContent>
                 <h5>New Course
                     <button className="btn btn-danger float-end"
@@ -63,15 +52,6 @@ export default function Dashboard(
                     onChange={(e) => setCourse({ ...course, description: e.target.value })} />
                 <hr />
             </FacultyContent>
-            <StudentContent>
-                <Button
-                    className="float-end mb-3"
-                    variant="primary"
-                    onClick={handleShowCourses}
-                >
-                    {showAllCourses ? "Show Enrolled Courses" : "Show All Courses"}
-                </Button>
-            </StudentContent>
             <h2 id="wd-dashboard-published">Published Courses ({courses.length})</h2> <hr />
             <div id="wd-dashboard-courses">
                 <Row xs={1} md={5} className="g-4">
@@ -107,23 +87,14 @@ export default function Dashboard(
 
                                             </FacultyContent>
                                             <StudentContent>
-                                                {currentUser && (
-                                                    course.isEnrolled
-                                                        ? (
-                                                            <Button
-                                                                variant="danger"
-                                                            // onClick={handleEnroll(course._id)}
-                                                            >
-                                                                Unenroll
-                                                            </Button>
-                                                        ) : (
-                                                            <Button
-                                                                variant="success"
-                                                            // onClick={handleEnroll(course._id)}
-                                                            >
-                                                                Enroll
-                                                            </Button>
-                                                        )
+                                                {enrolling && (
+                                                    <button onClick={(event) => {
+                                                        event.preventDefault();
+                                                        updateEnrollment(course._id, !course.enrolled);
+                                                    }}
+                                                        className={`btn ${course.enrolled ? "btn-danger" : "btn-success"} float-end`} >
+                                                        {course.enrolled ? "Unenroll" : "Enroll"}
+                                                    </button>
                                                 )}
                                             </StudentContent>
                                         </div>

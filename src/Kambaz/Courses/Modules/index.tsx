@@ -22,21 +22,33 @@ export default function Modules() {
         const modules = await coursesClient.findModulesForCourse(cid as string);
         dispatch(setModules(modules));
     };
-    const createModuleForCourse = async () => {
-        if (!cid) return;
-        const newModule = { name: moduleName, course: cid };
-        const module = await coursesClient.createModuleForCourse(cid, newModule);
-        dispatch(addModule(module));
-    };
-    const removeModule = async (moduleId: string) => {
+
+    const deleteModuleHandler = async (moduleId: string) => {
         await modulesClient.deleteModule(moduleId);
         dispatch(deleteModule(moduleId));
     };
-
-    const saveModule = async (module: any) => {
+    const fetchModulesForCourse = async () => {
+        const modules = await coursesClient.findModulesForCourse(cid!);
+        dispatch(setModules(modules));
+    };
+    const addModuleHandler = async () => {
+        const newModule = await coursesClient.createModuleForCourse(cid!, {
+            name: moduleName,
+            course: cid,
+        });
+        dispatch(addModule(newModule));
+        setModuleName("");
+    };
+    const updateModuleHandler = async (module: any) => {
         await modulesClient.updateModule(module);
         dispatch(updateModule(module));
     };
+
+
+    useEffect(() => {
+        fetchModulesForCourse();
+    }, [cid]);
+
 
     useEffect(() => {
         fetchModules();
@@ -45,7 +57,7 @@ export default function Modules() {
     return (
         <div>
             <FacultyContent>
-                <ModulesControls setModuleName={setModuleName} moduleName={moduleName} addModule={createModuleForCourse} />
+                <ModulesControls setModuleName={setModuleName} moduleName={moduleName} addModule={addModuleHandler} />
             </FacultyContent>
 
             <br /><br /><br /><br />
@@ -58,18 +70,16 @@ export default function Modules() {
                                 {!module.editing && module.name}
                                 {module.editing && (
                                     <FormControl className="w-50 d-inline-block"
-                                        onChange={(e) => dispatch(
-                                            updateModule({ ...module, name: e.target.value })
-                                        )}
+                                        onChange={(e) => updateModuleHandler({ ...module, name: e.target.value })}
                                         onKeyDown={(e) => {
                                             if (e.key === "Enter") {
-                                                saveModule({ ...module, editing: false });
+                                                updateModuleHandler({ ...module, editing: false });
                                             }
                                         }}
                                         defaultValue={module.name} />
                                 )}
                                 <ModulesControlButton moduleId={module._id}
-                                    deleteModule={(moduleId) => removeModule(moduleId)}
+                                    deleteModule={(moduleId) => deleteModuleHandler(moduleId)}
                                     editModule={(moduleId) => dispatch(editModule(moduleId))} />
                             </div>
                             {module.lessons && (

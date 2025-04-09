@@ -53,4 +53,5 @@ export const {
 export default coursesSlice.reducer;
 
 export const selectAllCourses = (state: any) => state.coursesReducer.courses;
-export const selectEnrollments = (state: any) => state.coursesReducer.enrollments;
+export const selectEnrollments = (state: any) =>
+  state.coursesReducer.enrollments;
